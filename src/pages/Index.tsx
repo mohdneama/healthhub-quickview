@@ -1,12 +1,13 @@
-
 import { useState } from "react";
-import { Calendar, Heart, Users, Phone, Search, ChevronDown } from "lucide-react";
+import { Calendar, Heart, Users, Phone, Search, ChevronDown, Globe, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const menuItems = [
     { label: "Home", href: "#", isActive: true },
@@ -27,8 +28,24 @@ const Index = () => {
       title: "Your health and safety have always been our top priority",
       image: "/lovable-uploads/e9cdcf25-2fbb-4aad-82df-7eecdb65954d.png",
     },
-    // Add more slides as needed
+    {
+      title: "Advanced Healthcare Solutions",
+      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=2000",
+    },
+    {
+      title: "Expert Medical Professionals",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000",
+    },
+    {
+      title: "Innovative Treatment Approaches",
+      image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=2000",
+    },
   ];
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark');
+  };
 
   const newsItems = [
     {
@@ -56,7 +73,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white animate-fade-in">
+    <div className={`min-h-screen bg-white animate-fade-in ${isDarkMode ? 'dark' : ''}`}>
       {/* Header */}
       <header className="bg-white border-b border-gray-200 fixed w-full z-50">
         <div className="container mx-auto px-6">
@@ -78,6 +95,23 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4">
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  onClick={() => setCurrentLanguage(currentLanguage === 'en' ? 'ar' : 'en')}
+                  className="relative"
+                >
+                  <Globe className="w-5 h-5" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleTheme}
+                >
+                  {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </Button>
+              </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">English</span>
                 <img
@@ -93,26 +127,28 @@ const Index = () => {
               </div>
             </div>
           </div>
-
-          {/* Navigation Menu */}
-          <nav className="bg-[#465B73] -mx-6">
-            <div className="container mx-auto px-6">
-              <div className="flex items-center space-x-6">
-                {menuItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className={`text-white py-4 px-2 text-sm hover:text-primary transition-colors flex items-center gap-1 
-                      ${item.isActive ? "bg-[#8BA888]" : ""}`}
-                  >
-                    {item.label}
-                    {item.hasSubmenu && <ChevronDown className="w-4 h-4" />}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </nav>
         </div>
+
+        {/* Navigation Menu - Full Width */}
+        <nav className="bg-[#465B73] w-full">
+          <div className="container mx-auto px-6">
+            <div className="flex items-center space-x-6">
+              {menuItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`text-white py-4 px-2 text-sm hover:text-primary transition-colors flex items-center gap-1 
+                    ${item.isActive ? "bg-[#8BA888]" : ""}`}
+                >
+                  {item.label}
+                  {item.hasSubmenu && <ChevronDown className="w-4 h-4" />}
+                </a>
+              ))}
+            </div>
+          </div>
+        </nav>
+        {/* Green line below navigation */}
+        <div className="h-1 bg-[#8BA888] w-full"></div>
       </header>
 
       {/* Main Content */}
