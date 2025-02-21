@@ -13,9 +13,12 @@ const Index = () => {
     { label: "About Us", href: "#about", hasSubmenu: true },
     { label: "Health Centers", href: "#centers" },
     { label: "Our Services", href: "#services" },
-    { label: "E-Services", href: "#eservices", hasSubmenu: true },
+    { label: "E- Services", href: "#eservices", hasSubmenu: true },
     { label: "Digital Participation", href: "#participation", hasSubmenu: true },
     { label: "Media", href: "#media", hasSubmenu: true },
+    { label: "Resources", href: "#resources", hasSubmenu: true },
+    { label: "FAQ'S", href: "#faqs" },
+    { label: "Careers", href: "#careers" },
     { label: "Contact Us", href: "#contact" }
   ];
 
@@ -59,48 +62,56 @@ const Index = () => {
         <div className="container mx-auto px-6">
           {/* Top Header */}
           <div className="flex items-center justify-between py-4 border-b">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Search className="w-4 h-4 text-gray-500" />
+            <div className="flex items-center gap-8">
+              <img
+                src="/lovable-uploads/061031d5-0e3e-40c1-9e6b-cfeba2a696c1.png"
+                alt="Primary Healthcare Centers"
+                className="h-16 object-contain"
+              />
+              <div className="flex items-center gap-2 border rounded-md px-3 py-2">
+                <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search..."
-                  className="text-sm focus:outline-none"
+                  placeholder="Search"
+                  className="text-sm focus:outline-none w-64"
                 />
               </div>
+            </div>
+            <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">English</span>
+                <img
+                  src="/lovable-uploads/99035f99-9e61-40d2-a86f-68cb2af4b6d1.png"
+                  alt="US Flag"
+                  className="w-6 h-4 object-cover"
+                />
                 <ChevronDown className="w-4 h-4 text-gray-500" />
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">Sign In</Button>
-              <Button size="sm">Register</Button>
+              <div className="flex items-center gap-4">
+                <Button variant="ghost" size="sm">Login</Button>
+                <Button variant="default" size="sm">Sign up</Button>
+              </div>
             </div>
           </div>
 
-          {/* Main Header */}
-          <div className="flex items-center justify-between h-20">
-            <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-primary">HealthCare Center</h1>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              {menuItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`text-gray-600 hover:text-primary transition-colors ${
-                    item.isActive ? "text-primary" : ""
-                  }`}
-                >
-                  <span className="flex items-center gap-1">
+          {/* Navigation Menu */}
+          <nav className="bg-[#465B73] -mx-6">
+            <div className="container mx-auto px-6">
+              <div className="flex items-center space-x-6">
+                {menuItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={`text-white py-4 px-2 text-sm hover:text-primary transition-colors flex items-center gap-1 
+                      ${item.isActive ? "bg-[#8BA888]" : ""}`}
+                  >
                     {item.label}
                     {item.hasSubmenu && <ChevronDown className="w-4 h-4" />}
-                  </span>
-                </a>
-              ))}
-            </nav>
-          </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </nav>
         </div>
       </header>
 
